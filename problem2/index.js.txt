@@ -1,0 +1,42 @@
+/**
+ * @param {number} k
+ * @param {number} n
+ * @return {number[][]}
+ */
+ let resArray = []
+ let  subTempArray = []
+ let vis = new Array(10);
+ vis.fill(false)
+var combinationSum3 = function(k, n) {
+    const res = recurrence(n, k, vis, 1)
+    console.log("OP", res)
+    
+};
+
+ function recurrence(n, k, vis, last = 1){
+    if(n===0 && k===0){
+        resArray.push(subTempArray)
+        console.log("MILA",resArray )
+        return
+    }
+
+
+if(n<=0 || k<=0){
+    // console.log("SUBTEMP",subTempArray)
+    return
+}
+
+
+    for(let i = last; i<=9; i++){
+        if(!vis[i]){
+            vis[i] = true;
+            subTempArray.push(i);
+
+            recurrence(n - i, k - 1, vis, i + 1 )
+            subTempArray.pop()
+
+            vis[i] = false;
+        }
+    }
+    return resArray
+}
